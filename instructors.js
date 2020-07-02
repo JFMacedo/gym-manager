@@ -1,5 +1,7 @@
 const fs = require("fs");
+const Intl = require("intl");
 const data = require("./data.json");
+const { age } = require("./utils");
 
 // Create
 exports.post = (request, response) => {
@@ -45,7 +47,14 @@ exports.show = (request, response) => {
 
   if(!foundInstructor) return response.send("Instrutor não encontrado!");
 
-  return response.send(foundInstructor);
+  const instructor = {
+    ...foundInstructor,
+    age: age(foundInstructor.birth),
+    services: foundInstructor.services.split(","),
+    created_at: new Intl.DateTimeFormat("pt-BR").format(foundInstructor.created_at)
+  }
+
+  return response.render("instructors/show", { instructor });
 }
 
 // Update

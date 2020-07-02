@@ -167,10 +167,18 @@ input::placeholder {
   font-weight: 400;
 }
 
-input[type=submit] {
+input[type=submit],
+a.button {
   margin-top: 32px;
   padding: 8px 32px;
+  font-weight: 700;
   border-radius: 4px;
+  cursor: pointer;
   color: var(--bg-color1);
   background-color: var(--hover-color);
+}
+
+a.button {
+  display: block;
+  text-align: center;
 }

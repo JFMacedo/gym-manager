@@ -5,16 +5,16 @@
       "avatar_url": "http://google.com.br",
       "name": "Jéssica Lais Cuaglio",
       "birth": 674092800000,
-      "create_at": 1593509120189,
+      "created_at": 1593509120189,
       "gender": "F",
       "services": "Crossfit, Musculação, Corrida"
     },
     {
       "id": 2,
-      "avatar_url": "http://google.com.br",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/58035425?s=460&u=32ea821ba533347dbd747964a98f79809131a14b&v=4",
       "name": "Jean Fernandes de Macedo",
       "birth": 679104000000,
-      "create_at": 1593509270537,
+      "created_at": 1593509270537,
       "gender": "M",
       "services": "Crossfit, Musculação, Corrida"
     },
