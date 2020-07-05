@@ -1,7 +1,7 @@
 const fs = require("fs");
 const Intl = require("intl");
 const data = require("./data.json");
-const { age } = require("./utils");
+const { age, date } = require("./utils");
 
 // Create
 exports.post = (request, response) => {
@@ -57,7 +57,22 @@ exports.show = (request, response) => {
   return response.render("instructors/show", { instructor });
 }
 
-// Update
+// Edit
+exports.edit = (request, response) => {
+  const { id } = request.params;
 
+  const foundInstructor = data.instructors.find((instructor) => {
+    return instructor.id == id;
+  });
+
+  if(!foundInstructor) return response.send("Instrutor não encontrado!");
+
+  const instructor = {
+    ...foundInstructor,
+    birth: date(foundInstructor.birth)
+  };
+
+  return response.render("instructors/edit", { instructor });
+}
 
 // Delete
