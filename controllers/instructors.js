@@ -1,13 +1,16 @@
 const fs = require("fs");
 const Intl = require("intl");
-const data = require("./data.json");
-const { age, date } = require("./utils");
+const data = require("../data.json");
+const { age, date } = require("../utils");
 
 exports.index = (request, response) => {
   return response.render("instructors/index", { instructors: data.instructors });
 }
 
 // Create
+exports.create = (request, response) => {
+  return response.render("instructors/create");
+}
 exports.post = (request, response) => {
   const keys = Object.keys(request.body);
 
@@ -78,8 +81,6 @@ exports.edit = (request, response) => {
 
   return response.render("instructors/edit", { instructor });
 }
-
-// Put
 exports.put = (request, response) => {
   const { id } = request.body;
   let index = 0;
