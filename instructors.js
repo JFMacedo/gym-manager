@@ -3,6 +3,10 @@ const Intl = require("intl");
 const data = require("./data.json");
 const { age, date } = require("./utils");
 
+exports.index = (request, response) => {
+  return response.render("instructors/index", { instructors: data.instructors });
+}
+
 // Create
 exports.post = (request, response) => {
   const keys = Object.keys(request.body);
@@ -31,7 +35,7 @@ exports.post = (request, response) => {
   fs.writeFile("data.json", JSON.stringify(data, null, 2), (error) => {
     if(error) return response.send("White file error!");
 
-    return response.redirect("/instructors");
+    return response.redirect(`/instructors/${id}`);
   });
 
   // return response.send(request.body);
@@ -75,4 +79,49 @@ exports.edit = (request, response) => {
   return response.render("instructors/edit", { instructor });
 }
 
+// Put
+exports.put = (request, response) => {
+  const { id } = request.body;
+  let index = 0;
+
+  const foundInstructor = data.instructors.find((instructor, foundIndex) => {
+    if(id == instructor.id) {
+      index = foundIndex;
+      return true;
+    }
+  });
+
+  if(!foundInstructor) return response.send("Instrutor não encontrado!");
+
+  const instructor = {
+    ...foundInstructor,
+    ...request.body,
+    birth: Date.parse(request.body.birth),
+    id: Number(request.body.id)
+  }
+
+  data.instructors[index] = instructor
+
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), (error) => {
+    if(error) return response.send("Erro na escrita!");
+
+    return response.redirect(`/instructors/${id}`);
+  });
+}
+
 // Delete
+exports.delete = (request, response) => {
+  const { id } = request.body;
+
+  const filteredInstructors = data.instructors.filter((instructor) => {
+    return instructor.id != id;
+  });
+
+  data.instructors = filteredInstructors;
+
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), (error) => {
+    if(error) return response.send("Erro ao escrever o arquivo!");
+  });
+
+  return response.redirect("/instructors");
+}

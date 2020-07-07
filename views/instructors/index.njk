@@ -6,35 +6,26 @@
 
 {% block content %}
   <div id="content">
-    <div class="card">
-      <section class="avatar" style="background: url(https://source.unsplash.com/collection/3652543/900x900) no-repeat center center / cover;">
-      </section><!--avatar-->
-      <section class="details">
-        <h3>Detalhes</h3>
-        <div class="item">
-          <div>Instrutor</div>
-          <div>Paulo Alves</div>
-        </div><!--item-->
-        <div class="item">
-          <div>Idade</div>
-          <div>30</div>
-        </div><!--item-->
-        <div class="item">
-          <div>Sexo</div>
-          <div>Masculino</div>
-        </div><!--item-->
-        <div class="item">
-          <div>Acompanhamento</div>
-          <div>
-            <span>Musculação</span>
-            <span>Crossfit</span>
-          </div>
-        </div><!--item-->
-        <div class="item">
-          <div>Desde</div>
-          <div>25/06/2020</div>
-        </div><!--item-->
-      </section><!--details-->
+    <div class="card table-container">
+      <table width="100%">
+        <thead>
+          <tr>
+            <td>Instrutor</td>
+            <td>Atendimentos</td>
+            <td>Ação</td>
+          </tr>
+        </thead>
+        {% for instructor in instructors %}
+          <tr>
+            <td>
+              <span style="background-image: url({{ instructor.avatar_url }})"></span>
+              {{ instructor.name }}
+            </td>
+            <td>{{ instructor.services }}</td>
+            <td><a href="/instructors/{{ instructor.id }}">Ver</a></td>
+          </tr>
+        {% endfor %}
+      </table>
     </div><!--card-->
   </div><!--page-instructors-->
 {% endblock %}
