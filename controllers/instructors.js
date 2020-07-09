@@ -22,9 +22,14 @@ exports.post = (request, response) => {
   let { avatar_url, name, birth, gender, services } = request.body;
 
   birth = Date.parse(request.body.birth);
-  const id = Number(data.instructors.length + 1);
+
+  let id = 1;
+  const lastInstructor = data.members[data.members.length-1];
   const created_at = Date.now();
 
+  if(lastInstructor)
+    id = lastInstructor.id + 1;
+  
   data.instructors.push({
     id,
     avatar_url,
@@ -76,7 +81,7 @@ exports.edit = (request, response) => {
 
   const instructor = {
     ...foundInstructor,
-    birth: date(foundInstructor.birth)
+    birth: date(foundInstructor.birth).iso
   };
 
   return response.render("instructors/edit", { instructor });

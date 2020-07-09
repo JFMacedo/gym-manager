@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 
 {% block head %}
-  <title>Gym Manager - Instrutores</title>
+  <title>Gym Manager - Membros</title>
 {% endblock %}
 
 {% block content %}
@@ -10,21 +10,29 @@
       <table width="100%">
         <thead>
           <tr>
-            <td>Instrutor</td>
-            <td>Atendimentos</td>
+            <td>Membro</td>
+            <td>Altura</td>
+            <td>Peso</td>
             <td>Ação</td>
           </tr>
         </thead>
-        {% for instructor in instructors %}
+        {% for member in members %}
           <tr>
             <td>
-              <span style="background-image: url({{ instructor.avatar_url }})"></span>
-              {{ instructor.name }}
+              <span style="background-image: url({{ member.avatar_url }})"></span>
+              {{ member.name }}
             </td>
-            <td>{{ instructor.services }}</td>
-            <td><a href="/instructors/{{ instructor.id }}">Ver</a></td>
+            <td>{{ member.height }}cm</td>
+            <td>{{ member.weight }}kg</td>
+            <td><a href="/members/{{ member.id }}">Ver</a></td>
           </tr>
         {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a href="/instructors/create">+</a></td>
+        </tr>
       </table>
     </div><!--card-->
   </div><!--page-instructors-->

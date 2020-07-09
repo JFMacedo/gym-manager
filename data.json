@@ -1,5 +1,28 @@
 {
-  "members": [],
+  "members": [
+    {
+      "avatar_url": "https://avatars0.githubusercontent.com/u/58035425?s=460&u=32ea821ba533347dbd747964a98f79809131a14b&v=4",
+      "name": "Jean Fernandes de Macedo",
+      "email": "jfmacedo91@gmail.com",
+      "birth": 679104000000,
+      "gender": "M",
+      "blood": "A1",
+      "weight": "121",
+      "height": "178",
+      "id": 1
+    },
+    {
+      "avatar_url": "https://scontent.fldb8-1.fna.fbcdn.net/v/t1.0-9/65380115_10219408005339811_4589544774821740544_n.jpg?_nc_cat=102&_nc_sid=09cbfe&_nc_eui2=AeHldPsuH5bcPFKQqfBi384OALYav8IYu8UAthq_whi7xXbOnd1iYdlIdkxIJltrqIWCvD37mb7bqw3vUdeoQQnP&_nc_ohc=cIB5Jzoc_R4AX_5sJm-&_nc_ht=scontent.fldb8-1.fna&oh=c762d1a48db7660a3aee55f8fed24a01&oe=5F2C7EE9",
+      "name": "Jéssica Laís Cuaglio",
+      "email": "jessicalais@gmail.com",
+      "birth": 674092800000,
+      "gender": "F",
+      "blood": "A1",
+      "weight": "80",
+      "height": "156",
+      "id": 2
+    }
+  ],
   "instructors": [
     {
       "id": 1,
@@ -17,7 +40,7 @@
       "birth": 111110400000,
       "created_at": 1593509270537,
       "gender": "M",
-      "services": "Crossfit, Musculação, Corrida"
+      "services": "Musculação, Corrida, Boxe"
     }
   ]
 }

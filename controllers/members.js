@@ -18,20 +18,18 @@ exports.post = (request, response) => {
       return response.send("Por favor preencha todos os campos.");
   }
 
-  let { avatar_url, name, birth, gender, services } = request.body;
-
   birth = Date.parse(request.body.birth);
-  const id = Number(data.members.length + 1);
-  const created_at = Date.now();
+
+  let id = 1;
+  const lastMember = data.members[data.members.length - 1];
+
+  if(lastMember)
+    id = lastMember.id + 1;
 
   data.members.push({
+    ...request.body,
     id,
-    avatar_url,
-    name,
-    birth,
-    created_at,
-    gender,
-    services
+    birth
   });
 
   fs.writeFile("data.json", JSON.stringify(data, null, 2), (error) => {
@@ -53,9 +51,49 @@ exports.show = (request, response) => {
 
   if(!foundMember) return response.send("Instrutor não encontrado!");
 
+  let bloodType = "";
+
+  switch (foundMember.blood) {
+    case "A1":
+      bloodType = "A+"
+      break;
+
+    case "A0":
+      bloodType = "A-"
+      break;
+
+    case "B1":
+      bloodType = "B+"
+      break;
+
+    case "B0":
+      bloodType = "B-"
+      break;
+
+    case "AB1":
+      bloodType = "AB+"
+      break;
+
+    case "AB0":
+      bloodType = "AB-"
+      break;
+
+    case "O1":
+      bloodType = "O+"
+      break;
+  
+    case "O0":
+      bloodType = "O-"
+
+    default:
+      break;
+  }
+
   const member = {
     ...foundMember,
-    age: age(foundMember.birth)
+    age: age(foundMember.birth),
+    birth: date(foundMember.birth).br,
+    blood: bloodType
   }
 
   return response.render("members/show", { member });
@@ -73,7 +111,7 @@ exports.edit = (request, response) => {
 
   const member = {
     ...foundMember,
-    birth: date(foundMember.birth)
+    birth: date(foundMember.birth).iso
   };
 
   return response.render("members/edit", { member });
